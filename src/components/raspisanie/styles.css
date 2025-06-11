@@ -1,0 +1,138 @@
+.rasp-container {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 25px 0;
+  font-family: "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  border-radius: 16px;
+  overflow: hidden;
+  background: white;
+  animation: fadeIn 0.4s ease-out;
+  text-align: center;
+  font-size: 15px;
+  line-height: 1.6;
+  color: #2d3748;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.rasp-title {
+  margin-bottom: 20px;
+  color: #1a365d;
+  text-align: center;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 1.2em;
+  letter-spacing: 1px;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);
+}
+
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+  margin: 25px 0;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+}
+
+.rasp-table {
+  width: 100%;
+  min-width: 1000px;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-family: "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: white;
+  animation: fadeIn 0.4s ease-out;
+  text-align: center;
+  font-size: 15px;
+  line-height: 1.6;
+  color: #2d3748;
+}
+
+.rasp-table th,
+.rasp-table td {
+  padding: 18px 24px;
+  text-align: center;
+  border: none;
+  border-bottom: 1px solid #edf2f7;
+  border-right: 1px solid #edf2f7;
+  transition: all 0.3s ease;
+  font-size: 15px;
+  line-height: 1.6;
+  white-space: nowrap;
+}
+
+.rasp-table th {
+  background: linear-gradient(145deg, #f8f9fa, #ffffff);
+  color: #1a365d;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.85em;
+  letter-spacing: 1px;
+  position: relative;
+  padding: 20px 24px;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);
+}
+
+.rasp-table th:last-child,
+.rasp-table td:last-child {
+  border-right: none;
+}
+
+.rasp-table th:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #4299e1, #667eea);
+  opacity: 0.15;
+}
+
+.rasp-table tbody tr {
+  transition: all 0.3s ease;
+}
+
+.rasp-table tbody tr:hover {
+  background-color: #f7fafc;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.rasp-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.rasp-table a {
+  color: #3182ce;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  background: rgba(66, 153, 225, 0.12);
+  font-size: 14px;
+  letter-spacing: 0.2px;
+}
+
+.rasp-table a:hover {
+  color: #2c5282;
+  background: rgba(66, 153, 225, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(66, 153, 225, 0.15);
+  text-decoration: none;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
