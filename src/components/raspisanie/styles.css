@@ -2,7 +2,6 @@
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
-  margin: 25px 0;
   font-family: "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
   border-radius: 16px;
@@ -15,9 +14,11 @@
   color: #2d3748;
   padding: 20px;
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 0px;
 }
-
+.rasp-container {
+  margin: 0px !important;
+}
 .rasp-title {
   margin-bottom: 20px;
   color: #1a365d;
@@ -28,11 +29,10 @@
   letter-spacing: 1px;
   text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);
 }
-
 .table-container {
   width: 100%;
   overflow-x: auto;
-  margin: 25px 0;
+
   border-radius: 16px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
 }

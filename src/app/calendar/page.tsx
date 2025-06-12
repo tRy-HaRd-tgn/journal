@@ -16,24 +16,28 @@ export default function Page() {
 
   return (
     <div className="bg-gray-50 font-sans">
-      <div className="container mx-auto px-4 py-8 max-w-6xl">
-        <header className="mb-8">
-          <h1 className="text-3xl font-bold text-indigo-800">
+      <div className="container mx-auto px-4 sm:px-6 py-4 sm:py-8 max-w-6xl">
+        <header className="mb-4 sm:mb-8">
+          <h1 className="text-2xl sm:text-3xl font-bold text-indigo-800">
             Журнал успеваемости
           </h1>
-          <div className="flex items-center mt-2 text-gray-600">
-            <span className="material-icons mr-1">school</span>
-            <span>2024-2025 учебный год</span>
-            <span className="mx-2">|</span>
-            <span className="font-medium">Георгий Иванович</span>
-            <span className="ml-1 px-2 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm">
-              41
-            </span>
+          <div className="flex flex-col sm:flex-row sm:items-center mt-2 text-gray-600 text-sm sm:text-base">
+            <div className="flex items-center mb-2 sm:mb-0">
+              <span className="material-icons mr-1">school</span>
+              <span>2024-2025 учебный год</span>
+            </div>
+            <span className="hidden sm:inline mx-2">|</span>
+            <div className="flex items-center">
+              <span className="font-medium">Георгий Иванович</span>
+              <span className="ml-1 px-2 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm">
+                41
+              </span>
+            </div>
           </div>
         </header>
 
-        <div className="bg-white rounded-xl shadow-md p-6 mb-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="bg-white rounded-xl shadow-md p-3 sm:p-6 mb-4 sm:mb-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Группа
@@ -67,32 +71,40 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="mb-6 space-y-3">
-          <div className="flex items-start p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded-r-lg">
-            <span className="material-icons text-yellow-500 mr-3">warning</span>
+        <div className="mb-4 sm:mb-6 space-y-2 sm:space-y-3">
+          <div className="flex items-start p-3 sm:p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded-r-lg">
+            <span className="material-icons text-yellow-500 mr-2 sm:mr-3">
+              warning
+            </span>
             <div>
-              <p className="font-medium text-yellow-800">Внимание</p>
-              <p className="text-sm text-yellow-700">
+              <p className="font-medium text-yellow-800 text-sm sm:text-base">
+                Внимание
+              </p>
+              <p className="text-xs sm:text-sm text-yellow-700">
                 Здесь будет сообщение об ошибке или предупреждение.
               </p>
             </div>
           </div>
-          <div className="flex items-start p-4 bg-blue-50 border-l-4 border-blue-400 rounded-r-lg">
-            <span className="material-icons text-blue-500 mr-3">info</span>
+          <div className="flex items-start p-3 sm:p-4 bg-blue-50 border-l-4 border-blue-400 rounded-r-lg">
+            <span className="material-icons text-blue-500 mr-2 sm:mr-3">
+              info
+            </span>
             <div>
-              <p className="font-medium text-blue-800">Информация</p>
-              <p className="text-sm text-blue-700">
+              <p className="font-medium text-blue-800 text-sm sm:text-base">
+                Информация
+              </p>
+              <p className="text-xs sm:text-sm text-blue-700">
                 Система учета баллов изменения.
               </p>
             </div>
           </div>
         </div>
 
-        <div className="mb-8">
-          <h2 className="text-xl font-semibold text-gray-800 mb-4 ">
+        <div className="mb-6 sm:mb-8">
+          <h2 className="text-lg sm:text-xl font-semibold text-gray-800 mb-3 sm:mb-4">
             Система подсчета баллов
           </h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 sm:gap-4">
             {menuItems?.map((value, index) => (
               <SystemComponent
                 key={index}

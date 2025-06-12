@@ -151,3 +151,72 @@ th {
     transform: translateY(0);
   }
 }
+
+/* Мобильная адаптация */
+@media screen and (max-width: 768px) {
+  .journal-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+    font-size: 14px;
+    margin: 15px 0;
+  }
+
+  .journal-table th,
+  .journal-table td {
+    padding: 12px 16px;
+    font-size: 14px;
+  }
+
+  .journal-table th {
+    padding: 15px 16px;
+    font-size: 0.8em;
+  }
+
+  .eumo-link {
+    padding: 4px 8px;
+    font-size: 13px;
+  }
+
+  .alert-cell,
+  .empty-cell {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+
+  /* Скрываем некоторые колонки на мобильных устройствах */
+  .journal-table th:nth-child(3),
+  .journal-table td:nth-child(3) {
+    display: none;
+  }
+
+  /* Уменьшаем отступы в ячейках с баллами */
+  .journal-table td span {
+    padding: 4px 8px;
+    font-size: 13px;
+  }
+}
+
+/* Адаптация для очень маленьких экранов */
+@media screen and (max-width: 480px) {
+  .journal-table {
+    font-size: 13px;
+  }
+
+  .journal-table th,
+  .journal-table td {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+
+  .journal-table th {
+    padding: 10px 12px;
+    font-size: 0.75em;
+  }
+
+  /* Скрываем дополнительные колонки на очень маленьких экранах */
+  .journal-table th:nth-child(4),
+  .journal-table td:nth-child(4) {
+    display: none;
+  }
+}
