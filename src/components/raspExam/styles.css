@@ -1,0 +1,59 @@
+.rasp-container {
+  margin: 20px;
+}
+
+.rasp-title {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #2c3e50;
+}
+
+.table-container {
+  overflow-x: auto;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.rasp-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 700px;
+}
+
+.rasp-table th,
+.rasp-table td {
+  border: 1px solid #e0e0e0;
+  padding: 14px 16px;
+  text-align: center;
+}
+
+.rasp-table th {
+  background-color: #f8f9fa;
+  color: #2c3e50;
+  font-weight: 600;
+}
+
+.rasp-table tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+.rasp-table tr:hover {
+  background-color: #e3f2fd;
+}
+
+.exams-notice {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #fff8e1;
+  border-left: 4px solid #ffc107;
+  border-radius: 4px;
+  font-size: 15px;
+}
+
+@media (max-width: 768px) {
+  .rasp-table th,
+  .rasp-table td {
+    padding: 10px 12px;
+    font-size: 14px;
+  }
+}
