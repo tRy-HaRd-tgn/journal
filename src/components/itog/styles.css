@@ -1,0 +1,121 @@
+.journal-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.journal-table th,
+.journal-table td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: center;
+}
+
+.journal-table th {
+  background-color: #f8f9fa;
+  font-weight: 600;
+}
+
+.journal-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.journal-table tr:hover {
+  background-color: #f5f5f5;
+}
+
+@media screen and (max-width: 1000px) {
+  .journal-table,
+  .journal-table tbody,
+  .journal-table tr,
+  .journal-table td {
+    display: block;
+  }
+
+  .journal-table thead {
+    display: none;
+  }
+
+  .journal-table tr {
+    margin-bottom: 20px;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .journal-table td {
+    position: relative;
+    padding: 20px 15px;
+    text-align: center;
+    border: none;
+    border-bottom: 1px solid #eee;
+    background: #fff;
+    transition: all 0.3s ease;
+    margin: 8px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+
+  .journal-table td:hover {
+    background-color: #f8f9fa;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+
+  .journal-table td:last-child {
+    border-bottom: none;
+  }
+
+  .journal-table td:before {
+    content: attr(data-label);
+    display: block;
+    margin-bottom: 12px;
+    font-weight: 600;
+    color: #666;
+    font-size: 14px;
+    text-align: center;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #f0f0f0;
+  }
+
+  .journal-table td[data-label="Дисциплина"] {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    font-weight: 600;
+    font-size: 18px;
+    padding: 25px 15px;
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none;
+    border-bottom: 2px solid #eee;
+  }
+
+  .journal-table td[data-label="Дисциплина"]:before {
+    display: none;
+  }
+
+  .journal-table td[data-label="Общий балл"] {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    font-weight: 600;
+    font-size: 20px;
+    text-align: center;
+    padding: 25px 15px;
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none;
+    border-top: 2px solid #eee;
+  }
+
+  .journal-table td[data-label="Общий балл"]:before {
+    display: none;
+  }
+
+  .journal-table td[data-label*="балл"] {
+    font-size: 18px;
+    font-weight: 600;
+    color: #2c3e50;
+  }
+}

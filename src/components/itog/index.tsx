@@ -1,4 +1,6 @@
 // components/Itog.js
+import "./styles.css";
+
 const Itog = () => {
   // Захардкоженные данные
   const discips = [
@@ -32,21 +34,21 @@ const Itog = () => {
         <tbody>
           {discips.map((dis, idx) => (
             <tr key={idx}>
-              <td>{dis.disciplina_name}</td>
-              <td>
+              <td data-label="Дисциплина">{dis.disciplina_name}</td>
+              <td data-label="R1">
                 {dis.r1}
                 {dis.komment1 && <br />}
                 {dis.komment1 && `Комментарий: ${dis.komment1}`}
               </td>
-              <td>
+              <td data-label="R2">
                 {dis.r2}
                 {dis.komment2 && <br />}
                 {dis.komment2 && `Комментарий: ${dis.komment2}`}
               </td>
-              <td>{dis.r}</td>
-              <td>{dis.ekzamen || ""}</td>
-              <td>{dis.ap || ""}</td>
-              <td>{dis.itog}</td>
+              <td data-label="Рейтинг">{dis.r}</td>
+              <td data-label="Экзамен">{dis.ekzamen || ""}</td>
+              <td data-label="Апеляция">{dis.ap || ""}</td>
+              <td data-label="Общий балл">{dis.itog}</td>
             </tr>
           ))}
         </tbody>
