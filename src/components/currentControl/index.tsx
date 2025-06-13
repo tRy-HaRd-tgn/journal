@@ -1,13 +1,14 @@
 // components/CurControl.js
 import "./styles.css";
 import { useEffect, useState } from "react";
+import React from "react";
 
 export const CurrentControl = () => {
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 1000);
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
+      setIsMobile(window.innerWidth <= 1000);
     };
 
     window.addEventListener("resize", handleResize);
@@ -19,8 +20,17 @@ export const CurrentControl = () => {
     vzans: [
       { haracter_rup_id: 1, haracter_rup_ru: "Лекция" },
       { haracter_rup_id: 2, haracter_rup_ru: "Практика" },
+      { haracter_rup_id: 3, haracter_rup_ru: "Лабораторные работы" },
     ],
     discips: [
+      {
+        disciplina_name: "Математика",
+        rup_id1: 101,
+        ssharacter_rup_student_id: 201,
+        ssjurnal_poseshaemost_nedeleya_sum: 2,
+        ssjurnal_poseshaemost_all_sum: 5,
+        disciplina_kod: "MATH101",
+      },
       {
         disciplina_name: "Математика",
         rup_id1: 101,
@@ -48,7 +58,7 @@ export const CurrentControl = () => {
         const rowSaves = data.saves.filter((s) => s.rup_id2 === dis.rup_id1);
 
         return (
-          <div key={dis.rup_id1} className="discipline-card">
+          <div key={`${dis.rup_id1}-${idx}`} className="discipline-card">
             <div className="discipline-header">
               <h3>{dis.disciplina_name}</h3>
               <span className="eumo-link">ЭУМО</span>
@@ -64,7 +74,7 @@ export const CurrentControl = () => {
 
                 return (
                   <div
-                    key={`${vz.haracter_rup_id}-${dis.rup_id1}`}
+                    key={`${vz.haracter_rup_id}-${dis.rup_id1}-${idx}`}
                     className={`type-block ${isMissed ? "alert-cell" : ""} ${
                       !save ? "empty-cell" : ""
                     }`}
@@ -129,9 +139,9 @@ export const CurrentControl = () => {
             );
 
             return (
-              <>
+              <React.Fragment key={`${dis.rup_id1}-${idx}-group`}>
                 <tr
-                  key={`${dis.rup_id1}-1`}
+                  key={`${dis.rup_id1}-${idx}-1`}
                   style={{
                     backgroundColor: dis.disciplina_kod === "777" ? "#F99" : "",
                   }}
@@ -164,7 +174,7 @@ export const CurrentControl = () => {
                   <td rowSpan={2}>{dis.ssjurnal_poseshaemost_nedeleya_sum}</td>
                   <td rowSpan={2}>{dis.ssjurnal_poseshaemost_all_sum}</td>
                 </tr>
-                <tr key={`${dis.rup_id1}-2`}>
+                <tr key={`${dis.rup_id1}-${idx}-2`}>
                   {data.vzans.map((vz) => {
                     const save = rowSaves.find(
                       (s) => s.haracter_rup_id === vz.haracter_rup_id
@@ -191,7 +201,7 @@ export const CurrentControl = () => {
                     );
                   })}
                 </tr>
-              </>
+              </React.Fragment>
             );
           })}
         </tbody>

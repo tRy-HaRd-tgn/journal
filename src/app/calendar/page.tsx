@@ -117,7 +117,24 @@ export default function Page() {
           </div>
         </div>
         {state === "Текущий контроль" && <CurrentControl />}
-        {state === "Рейтинг допуска 1" && <Rating1 />}
+        {state === "Рейтинг допуска 1" && (
+          <Rating1
+            disciplines={[
+              {
+                id: 1,
+                disciplina_name: "Физика",
+                ssjurnal_nedelya:
+                  "2@85@0$3@90@5$4@78@10$5@92@0$6@88@5$7@95@0$8@85@10",
+              },
+              {
+                id: 2,
+                disciplina_name: "Математика",
+                ssjurnal_nedelya:
+                  "2@90@0$3@85@5$4@92@10$5@88@0$6@95@5$7@85@0$8@90@10",
+              },
+            ]}
+          />
+        )}
         {state === "Итог" && <Itog />}
         {state === "Расписание занятий" && <Rasp />}
         {state === "Регистрация" && <Reg />}

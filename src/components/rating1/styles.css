@@ -1,0 +1,208 @@
+.journal-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.journal-table th,
+.journal-table td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: center;
+}
+
+.journal-table th {
+  background-color: #f8f9fa;
+  font-weight: 600;
+}
+
+@media screen and (max-width: 1000px) {
+  .journal-table,
+  .journal-table tbody,
+  .journal-table tr,
+  .journal-table td {
+    display: block;
+  }
+
+  .journal-table thead {
+    display: none;
+  }
+
+  .journal-table tr {
+    margin-bottom: 20px;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .journal-table td {
+    position: relative;
+    padding: 20px 15px;
+    text-align: center;
+    border: none;
+    border-bottom: 1px solid #eee;
+    background: #fff;
+    transition: all 0.3s ease;
+    margin: 8px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+
+  .journal-table td:hover {
+    background-color: #f8f9fa;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+
+  .journal-table td:last-child {
+    border-bottom: none;
+  }
+
+  .journal-table td:before {
+    content: attr(data-label);
+    display: block;
+    margin-bottom: 12px;
+    font-weight: 600;
+    color: #666;
+    font-size: 14px;
+    text-align: center;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #f0f0f0;
+  }
+
+  .journal-table td[data-label="Дисциплина"] {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    font-weight: 600;
+    font-size: 18px;
+    padding: 25px 15px;
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none;
+    border-bottom: 2px solid #eee;
+  }
+
+  .journal-table td[data-label="Дисциплина"]:before {
+    display: none;
+  }
+
+  .journal-table td[data-label="Общий балл"] {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    font-weight: 600;
+    font-size: 20px;
+    text-align: center;
+    padding: 25px 15px;
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none;
+    border-top: 2px solid #eee;
+  }
+
+  .journal-table td[data-label="Общий балл"]:before {
+    display: none;
+  }
+
+  .journal-table td[data-label*="СРС"] {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  }
+
+  .journal-table td[data-label*="СРС"]:before {
+    color: #666;
+  }
+
+  .journal-table td[data-label*="балл"] {
+    font-size: 18px;
+    font-weight: 600;
+    color: #2c3e50;
+  }
+}
+
+.rating-container {
+  padding: 20px;
+}
+
+.rating-block {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.rating-header {
+  background: #f8f9fa;
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.rating-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+.rating-content {
+  padding: 15px;
+}
+
+.rating-row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.rating-item {
+  background: #f8f9fa;
+  padding: 12px;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.rating-label {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 5px;
+}
+
+.rating-value {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+.rating-total {
+  background: #e9ecef;
+  padding: 15px;
+  border-radius: 6px;
+  text-align: center;
+  margin-top: 15px;
+}
+
+.rating-total-label {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 5px;
+}
+
+.rating-total-value {
+  font-size: 20px;
+  font-weight: 700;
+  color: #333;
+}
+
+@media screen and (max-width: 768px) {
+  .rating-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .rating-row {
+    grid-template-columns: 1fr;
+  }
+}
