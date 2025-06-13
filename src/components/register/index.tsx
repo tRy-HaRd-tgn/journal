@@ -57,7 +57,7 @@ const Reg = () => {
 
       <style jsx>{`
         .reg-container {
-          max-width: 800px;
+          width: 100%;
           margin: 20px auto;
           padding: 20px;
           background: #fff;

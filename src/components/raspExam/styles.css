@@ -9,15 +9,16 @@
 }
 
 .table-container {
-  overflow-x: auto;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
+  margin: 0 20px;
+  width: calc(100% - 40px);
+  overflow-x: auto;
 }
 
 .rasp-table {
   width: 100%;
   border-collapse: collapse;
-  min-width: 700px;
 }
 
 .rasp-table th,
@@ -51,9 +52,44 @@
 }
 
 @media (max-width: 768px) {
-  .rasp-table th,
+  .desktop-only {
+    display: none;
+  }
+
+  .rasp-table,
+  .rasp-table tbody,
+  .rasp-table tr,
   .rasp-table td {
-    padding: 10px 12px;
-    font-size: 14px;
+    display: block;
+    width: 100%;
+  }
+
+  .rasp-table tr {
+    margin-bottom: 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .rasp-table td {
+    text-align: right;
+    padding: 12px;
+    position: relative;
+    border: none;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  .rasp-table td:last-child {
+    border-bottom: none;
+  }
+
+  .rasp-table td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 12px;
+    width: 45%;
+    font-weight: 600;
+    text-align: left;
+    color: #2c3e50;
   }
 }

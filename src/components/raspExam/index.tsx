@@ -1,9 +1,24 @@
 // components/RaspEkzamen.js
 import "./styles.css";
 
+interface Exam {
+  id: number;
+  date: string;
+  time: string;
+  disciplina: string;
+  prepod: string;
+  auditoria: string;
+  forma: string;
+}
+
+interface Header {
+  key: keyof Exam;
+  label: string;
+}
+
 const RaspEkzamen = () => {
   // Захардкоженные данные расписания экзаменов
-  const exams = [
+  const exams: Exam[] = [
     {
       id: 1,
       date: "15.05.2024",
@@ -33,33 +48,38 @@ const RaspEkzamen = () => {
     },
   ];
 
+  const headers: Header[] = [
+    { key: "date", label: "Дата" },
+    { key: "time", label: "Время" },
+    { key: "disciplina", label: "Дисциплина" },
+    { key: "prepod", label: "Преподаватель" },
+    { key: "auditoria", label: "Аудитория" },
+    { key: "forma", label: "Форма сдачи" },
+  ];
+
   return (
     <div className="rasp-container">
       <h3 className="rasp-title">Расписание экзаменов</h3>
 
       <div className="table-container">
         <table className="rasp-table">
-          <thead>
+          <thead className="desktop-only">
             <tr>
               <th>№</th>
-              <th>Дата</th>
-              <th>Время</th>
-              <th>Дисциплина</th>
-              <th>Преподаватель</th>
-              <th>Аудитория</th>
-              <th>Форма сдачи</th>
+              {headers.map((header) => (
+                <th key={header.key}>{header.label}</th>
+              ))}
             </tr>
           </thead>
           <tbody>
             {exams.map((exam, index) => (
               <tr key={exam.id}>
-                <td>{index + 1}</td>
-                <td>{exam.date}</td>
-                <td>{exam.time}</td>
-                <td>{exam.disciplina}</td>
-                <td>{exam.prepod}</td>
-                <td>{exam.auditoria}</td>
-                <td>{exam.forma}</td>
+                <td className="desktop-only">{index + 1}</td>
+                {headers.map((header) => (
+                  <td key={header.key} data-label={header.label}>
+                    {exam[header.key]}
+                  </td>
+                ))}
               </tr>
             ))}
           </tbody>

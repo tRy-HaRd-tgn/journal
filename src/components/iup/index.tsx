@@ -1,4 +1,6 @@
 // components/Iup.js
+import styles from "./styles.module.css";
+
 const Iup = () => {
   // Захардкоженные данные ИТП
   const iupData = {
@@ -42,18 +44,16 @@ const Iup = () => {
   };
 
   return (
-    <div className="bg-white rounded-xl shadow-md p-6 max-w-6xl mx-auto">
-      <div className="mb-8">
-        <div className="flex justify-between items-start mb-6">
-          <div className="flex-1">
-            <h3 className="text-right text-xl font-semibold text-gray-800">
+    <div className="bg-white rounded-xl shadow-md p-4 sm:p-6 cont">
+      <div className="mb-6 sm:mb-8">
+        <div className="flex flex-col sm:flex-row justify-between items-start mb-4 sm:mb-6">
+          <div className="flex-1 mb-4 sm:mb-0">
+            <h3 className="text-lg sm:text-xl font-semibold text-gray-800">
               {iupData.shapka.shapka1}
             </h3>
           </div>
-          <div className="ml-4">
-            <div className="w-32 h-32 bg-gray-100 border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center text-gray-500">
-              QR-код
-            </div>
+          <div className="w-full sm:w-32 h-24 sm:h-32 bg-gray-100 border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center text-gray-500">
+            QR-код
           </div>
         </div>
 
@@ -68,88 +68,69 @@ const Iup = () => {
         </div>
       </div>
 
-      <div className="overflow-x-auto mb-8">
-        <table className="journal-table">
-          <thead>
-            <tr>
-              <th>№</th>
-              <th>Код дисциплины</th>
-              <th>Наименование дисциплины</th>
-              <th>Кредиты</th>
-            </tr>
-          </thead>
-          <tbody>
-            {iupData.tb.map((item, index) => (
-              <tr key={index}>
-                <td>{item.nomer}</td>
-                <td>{item.disciplina_id}</td>
-                <td>{item.disciplina_name}</td>
-                <td>{item.kredit}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      <div className="mb-6 sm:mb-8">
+        <div className={styles.tableContainer}>
+          <div className={styles.tableWrapper}>
+            <table className={styles.journalTable}>
+              <thead className={styles.tableHeader}>
+                <tr>
+                  <th>№</th>
+                  <th>Код дисциплины</th>
+                  <th>Наименование дисциплины</th>
+                  <th>Кредиты</th>
+                </tr>
+              </thead>
+              <tbody className={styles.tableBody}>
+                {iupData.tb.map((item, index) => (
+                  <tr key={index}>
+                    <td data-label="№">{item.nomer}</td>
+                    <td data-label="Код дисциплины">{item.disciplina_id}</td>
+                    <td data-label="Наименование дисциплины">
+                      {item.disciplina_name}
+                    </td>
+                    <td data-label="Кредиты">{item.kredit}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
 
-      <div className="flex justify-between items-center mb-8">
-        <h3 className="text-lg font-semibold text-gray-800">
+      <div className="flex flex-col sm:flex-row justify-between items-center mb-6 sm:mb-8">
+        <h3 className="text-base sm:text-lg font-semibold text-gray-800 mb-4 sm:mb-0">
           {iupData.shapka.shapka5}
         </h3>
-        <div className="w-32 h-32 bg-gray-100 border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center text-gray-500">
+        <div className="w-full sm:w-32 h-24 sm:h-32 bg-gray-100 border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center text-gray-500">
           QR-код
         </div>
       </div>
 
-      <div className="mb-8">
-        <h4 className="text-lg font-semibold text-gray-800 text-center mb-4">
+      <div className="mb-6 sm:mb-8">
+        <h4 className="text-base sm:text-lg font-semibold text-gray-800 mb-4">
           График учебного процесса
         </h4>
-        <div className="overflow-x-auto">
-          <table className="journal-table">
-            <thead>
-              <tr>
-                <th>Период</th>
-                <th>Даты</th>
-              </tr>
-            </thead>
-            <tbody>
-              {iupData.tb_gr.map((item, index) => (
-                <tr key={index}>
-                  <td>{item.period_nomer}</td>
-                  <td>{item.period_data}</td>
+        <div className={styles.tableContainer}>
+          <div className={styles.tableWrapper}>
+            <table className={styles.journalTable}>
+              <thead className={styles.tableHeader}>
+                <tr>
+                  <th>Период</th>
+                  <th>Даты</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody className={styles.tableBody}>
+                {iupData.tb_gr.map((item, index) => (
+                  <tr key={index}>
+                    <td data-label="Период">{item.period_nomer}</td>
+                    <td data-label="Даты">{item.period_data}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
-
-      <style jsx>{`
-        .journal-table {
-          width: 100%;
-          border-collapse: collapse;
-          margin: 20px 0;
-        }
-
-        .journal-table th,
-        .journal-table td {
-          border: 1px solid #ddd;
-          padding: 8px;
-          text-align: center;
-        }
-
-        .journal-table th {
-          background-color: #f5f5f5;
-        }
-
-        .journal-table tr:nth-child(even) {
-          background-color: #f9f9f9;
-        }
-
-        .journal-table tr:hover {
-          background-color: #f5f5f5;
-        }
-      `}</style>
     </div>
   );
 };

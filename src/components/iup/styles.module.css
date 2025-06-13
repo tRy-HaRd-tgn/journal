@@ -1,0 +1,98 @@
+@media screen and (max-width: 450px) {
+  .cont {
+    width: 420px !important;
+    min-width: none;
+  }
+}
+.tableContainer {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: 1.5rem;
+}
+
+.tableWrapper {
+  min-width: 640px;
+}
+
+.journalTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+.journalTable th,
+.journalTable td {
+  border: 1px solid #ddd;
+  padding: 6px 4px;
+  text-align: center;
+  font-size: 0.875rem;
+}
+
+@media (min-width: 640px) {
+  .journalTable th,
+  .journalTable td {
+    padding: 8px;
+    font-size: 1rem;
+  }
+}
+
+.journalTable th {
+  background-color: #f5f5f5;
+  white-space: nowrap;
+}
+
+.journalTable tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.journalTable tr:hover {
+  background-color: #f5f5f5;
+}
+
+@media screen and (max-width: 640px) {
+  .tableWrapper {
+    min-width: 100%;
+  }
+
+  .journalTable {
+    display: block;
+  }
+
+  .tableHeader {
+    display: none;
+  }
+
+  .tableBody {
+    display: block;
+  }
+
+  .tableBody tr {
+    display: block;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+
+  .tableBody td {
+    display: block;
+    text-align: right;
+    padding: 0.5rem;
+    position: relative;
+    border: none;
+    border-bottom: 1px solid #eee;
+  }
+
+  .tableBody td:last-child {
+    border-bottom: none;
+  }
+
+  .tableBody td::before {
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    color: #666;
+  }
+}

@@ -1,7 +1,19 @@
 // components/CurControl.js
 import "./styles.css";
+import { useEffect, useState } from "react";
 
 export const CurrentControl = () => {
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   // Захардкоженные данные
   const data = {
     vzans: [
@@ -30,7 +42,67 @@ export const CurrentControl = () => {
     ],
   };
 
-  return (
+  const renderMobileView = () => (
+    <div className="vertical-table-container">
+      {data.discips.map((dis, idx) => {
+        const rowSaves = data.saves.filter((s) => s.rup_id2 === dis.rup_id1);
+
+        return (
+          <div key={dis.rup_id1} className="discipline-card">
+            <div className="discipline-header">
+              <h3>{dis.disciplina_name}</h3>
+              <span className="eumo-link">ЭУМО</span>
+            </div>
+
+            <div className="discipline-content">
+              {data.vzans.map((vz) => {
+                const save = rowSaves.find(
+                  (s) => s.haracter_rup_id === vz.haracter_rup_id
+                );
+                const isMissed =
+                  save && save.ssjurnal_poseshaemost_status !== "0";
+
+                return (
+                  <div
+                    key={`${vz.haracter_rup_id}-${dis.rup_id1}`}
+                    className={`type-block ${isMissed ? "alert-cell" : ""} ${
+                      !save ? "empty-cell" : ""
+                    }`}
+                  >
+                    <h4>{vz.haracter_rup_ru}</h4>
+                    {save ? (
+                      <>
+                        <p className="teacher-name">{save.sotrudnik_fio}</p>
+                        <p className="score">
+                          Балл:{" "}
+                          <span className="score-value">
+                            {save.ssjurnal_ball}
+                          </span>
+                        </p>
+                      </>
+                    ) : (
+                      <p className="no-data">Нет данных</p>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+
+            <div className="discipline-footer">
+              <div className="missed-info">
+                <p>
+                  Пропуски за неделю: {dis.ssjurnal_poseshaemost_nedeleya_sum}
+                </p>
+                <p>Всего пропусков: {dis.ssjurnal_poseshaemost_all_sum}</p>
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+
+  const renderDesktopView = () => (
     <div>
       <table id="StudentTable" className="journal-table">
         <thead>
@@ -126,4 +198,6 @@ export const CurrentControl = () => {
       </table>
     </div>
   );
+
+  return isMobile ? renderMobileView() : renderDesktopView();
 };
