@@ -1,38 +1,43 @@
 // components/Rating1.js
 import "./styles.css";
 
-interface Discipline {
-  id: string | number;
-  disciplina_name: string;
-  ssjurnal_nedelya: string;
-}
-
-interface Rating1Props {
-  disciplines?: Discipline[];
-}
-
-const Rating1: React.FC<Rating1Props> = ({ disciplines = [] }) => {
-  console.log("Полученные данные:", disciplines);
-
-  // Парсинг данных недель
-  const parseWeekData = (
-    weekString: string
-  ): Record<string, { ball: string; srs: string }> => {
-    const weeks = weekString.split("$");
-    const result: Record<string, { ball: string; srs: string }> = {};
-
-    weeks.forEach((week) => {
-      if (!week) return;
-      const [weekNum, ball, srs] = week.split("@");
-      result[weekNum] = { ball, srs };
-    });
-
-    return result;
-  };
-
-  if (!disciplines || disciplines.length === 0) {
-    return <div>Нет данных для отображения</div>;
-  }
+const Rating1 = () => {
+  // Захардкоженные данные для рейтинга допуска 1
+  const ratingData = [
+    {
+      disciplina_name: "Физика",
+      week2: 85,
+      week3: 90,
+      week4: { ball: 78, srs: 10 },
+      week5: 92,
+      week6: 88,
+      week7: { ball: 95, srs: 0 },
+      week8: 85,
+      r1: 90,
+    },
+    {
+      disciplina_name: "Программирование",
+      week2: 90,
+      week3: 85,
+      week4: { ball: 92, srs: 5 },
+      week5: 88,
+      week6: 94,
+      week7: { ball: 90, srs: 10 },
+      week8: 87,
+      r1: 89,
+    },
+    {
+      disciplina_name: "Высшая математика",
+      week2: 78,
+      week3: 82,
+      week4: { ball: 85, srs: 8 },
+      week5: 90,
+      week6: 87,
+      week7: { ball: 92, srs: 5 },
+      week8: 88,
+      r1: 86,
+    },
+  ];
 
   return (
     <div>
@@ -63,26 +68,21 @@ const Rating1: React.FC<Rating1Props> = ({ disciplines = [] }) => {
           </tr>
         </thead>
         <tbody>
-          {disciplines.map((dis) => {
-            const weekData = parseWeekData(dis.ssjurnal_nedelya);
-            const r1Total = 90; // Пример итогового балла
-
-            return (
-              <tr key={dis.id}>
-                <td data-label="Дисциплина">{dis.disciplina_name}</td>
-                <td data-label="2 неделя">{weekData[2]?.ball || "-"}</td>
-                <td data-label="3 неделя">{weekData[3]?.ball || "-"}</td>
-                <td data-label="4 неделя (балл)">{weekData[4]?.ball || "-"}</td>
-                <td data-label="4 неделя (СРС)">{weekData[4]?.srs || "-"}</td>
-                <td data-label="5 неделя">{weekData[5]?.ball || "-"}</td>
-                <td data-label="6 неделя">{weekData[6]?.ball || "-"}</td>
-                <td data-label="7 неделя (балл)">{weekData[7]?.ball || "-"}</td>
-                <td data-label="7 неделя (СРС)">{weekData[7]?.srs || "-"}</td>
-                <td data-label="8 неделя">{weekData[8]?.ball || "-"}</td>
-                <td data-label="Общий балл">{r1Total}</td>
-              </tr>
-            );
-          })}
+          {ratingData.map((subject, index) => (
+            <tr key={index}>
+              <td data-label="Дисциплина">{subject.disciplina_name}</td>
+              <td data-label="2 неделя">{subject.week2}</td>
+              <td data-label="3 неделя">{subject.week3}</td>
+              <td data-label="4 неделя (балл)">{subject.week4.ball}</td>
+              <td data-label="4 неделя (СРС)">{subject.week4.srs}</td>
+              <td data-label="5 неделя">{subject.week5}</td>
+              <td data-label="6 неделя">{subject.week6}</td>
+              <td data-label="7 неделя (балл)">{subject.week7.ball}</td>
+              <td data-label="7 неделя (СРС)">{subject.week7.srs}</td>
+              <td data-label="8 неделя">{subject.week8}</td>
+              <td data-label="Общий балл">{subject.r1}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>
