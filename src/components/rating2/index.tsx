@@ -68,17 +68,19 @@ const Rating2 = () => {
         <tbody>
           {ratingData.map((subject, index) => (
             <tr key={index}>
-              <td>{subject.disciplina_name}</td>
-              <td>{subject.week9}</td>
-              <td>{subject.week10}</td>
-              <td>{subject.week11.ball}</td>
-              <td>{subject.week11.srs}</td>
-              <td>{subject.week12}</td>
-              <td>{subject.week13}</td>
-              <td>{subject.week14.ball}</td>
-              <td>{subject.week14.srs}</td>
-              <td>{subject.week15}</td>
-              <td style={{ textAlign: "center" }}>{subject.r2}</td>
+              <td data-label="Дисциплина">{subject.disciplina_name}</td>
+              <td data-label="9 неделя">{subject.week9}</td>
+              <td data-label="10 неделя">{subject.week10}</td>
+              <td data-label="11 неделя (балл)">{subject.week11.ball}</td>
+              <td data-label="11 неделя (СРС)">{subject.week11.srs}</td>
+              <td data-label="12 неделя">{subject.week12}</td>
+              <td data-label="13 неделя">{subject.week13}</td>
+              <td data-label="14 неделя (балл)">{subject.week14.ball}</td>
+              <td data-label="14 неделя (СРС)">{subject.week14.srs}</td>
+              <td data-label="15 неделя">{subject.week15}</td>
+              <td data-label="Общий балл" style={{ textAlign: "center" }}>
+                {subject.r2}
+              </td>
             </tr>
           ))}
         </tbody>
@@ -89,17 +91,20 @@ const Rating2 = () => {
           width: 100%;
           border-collapse: collapse;
           margin: 20px 0;
+          background: #fff;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .journal-table th,
         .journal-table td {
           border: 1px solid #ddd;
-          padding: 8px;
+          padding: 12px;
           text-align: center;
         }
 
         .journal-table th {
-          background-color: #f5f5f5;
+          background-color: #f8f9fa;
+          font-weight: 600;
         }
 
         .journal-table tr:nth-child(even) {
@@ -108,6 +113,108 @@ const Rating2 = () => {
 
         .journal-table tr:hover {
           background-color: #f5f5f5;
+        }
+
+        @media screen and (max-width: 1000px) {
+          .journal-table,
+          .journal-table tbody,
+          .journal-table tr,
+          .journal-table td {
+            display: block;
+          }
+
+          .journal-table thead {
+            display: none;
+          }
+
+          .journal-table tr {
+            margin-bottom: 20px;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            text-align: center;
+          }
+
+          .journal-table td {
+            position: relative;
+            padding: 20px 15px;
+            text-align: center;
+            border: none;
+            border-bottom: 1px solid #eee;
+            background: #fff;
+            transition: all 0.3s ease;
+            margin: 8px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+          }
+
+          .journal-table td:hover {
+            background-color: #f8f9fa;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+          }
+
+          .journal-table td:last-child {
+            border-bottom: none;
+          }
+
+          .journal-table td:before {
+            content: attr(data-label);
+            display: block;
+            margin-bottom: 12px;
+            font-weight: 600;
+            color: #666;
+            font-size: 14px;
+            text-align: center;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #f0f0f0;
+          }
+
+          .journal-table td[data-label="Дисциплина"] {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            font-weight: 600;
+            font-size: 18px;
+            padding: 25px 15px;
+            margin: 0;
+            border-radius: 0;
+            box-shadow: none;
+            border-bottom: 2px solid #eee;
+          }
+
+          .journal-table td[data-label="Дисциплина"]:before {
+            display: none;
+          }
+
+          .journal-table td[data-label="Общий балл"] {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            font-weight: 600;
+            font-size: 20px;
+            text-align: center;
+            padding: 25px 15px;
+            margin: 0;
+            border-radius: 0;
+            box-shadow: none;
+            border-top: 2px solid #eee;
+          }
+
+          .journal-table td[data-label="Общий балл"]:before {
+            display: none;
+          }
+
+          .journal-table td[data-label*="СРС"] {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+          }
+
+          .journal-table td[data-label*="СРС"]:before {
+            color: #666;
+          }
+
+          .journal-table td[data-label*="балл"] {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2c3e50;
+          }
         }
       `}</style>
     </div>
