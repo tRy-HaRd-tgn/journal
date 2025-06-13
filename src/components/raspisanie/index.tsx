@@ -1,5 +1,5 @@
 // components/Rasp.js
-import "./styles.css";
+import "./styles.module.css";
 
 const Rasp = () => {
   // Захардкоженные данные расписания
@@ -71,15 +71,17 @@ const Rasp = () => {
           <tbody>
             {data.rasps.map((rasp, index) => (
               <tr key={index}>
-                <td>{index + 1}</td>
-                <td>{rasp.den_short_ru}</td>
-                <td>{rasp.urok_nomer}</td>
-                <td>{rasp.urok_vremya}</td>
-                <td>{rasp.disciplina_name}</td>
-                <td>{rasp.haracter_rup_ru}</td>
-                <td>{rasp.sotrudnik_fio}</td>
-                <td>{rasp.aud_name}</td>
-                <td>
+                <td data-label="№">{index + 1}</td>
+                <td data-label="День">{rasp.den_short_ru}</td>
+                <td data-label="Занятие">{rasp.urok_nomer}</td>
+                <td data-label="Время">{rasp.urok_vremya}</td>
+                <td data-label="Наименование дисциплины">
+                  {rasp.disciplina_name}
+                </td>
+                <td data-label="Вид занятия">{rasp.haracter_rup_ru}</td>
+                <td data-label="Фио преподавателя">{rasp.sotrudnik_fio}</td>
+                <td data-label="Аудитория">{rasp.aud_name}</td>
+                <td data-label="Ссылка ВКС">
                   <a
                     href={rasp.ssylka_vks}
                     target="_blank"
@@ -88,7 +90,7 @@ const Rasp = () => {
                     {rasp.ssylka_vks}
                   </a>
                 </td>
-                <td>{rasp.login_password_vks}</td>
+                <td data-label="Логин/пароль ВКС">{rasp.login_password_vks}</td>
               </tr>
             ))}
           </tbody>

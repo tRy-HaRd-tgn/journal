@@ -126,13 +126,68 @@
   text-decoration: none;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
+@media (max-width: 1130px) {
+  .rasp-container {
+    padding: 10px;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+
+  .table-container {
+    overflow-x: visible;
+  }
+
+  .rasp-table {
+    min-width: auto;
+    width: 100%;
+  }
+
+  .rasp-table thead {
+    display: none;
+  }
+
+  .rasp-table tbody tr {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    border: 1px solid #edf2f7;
+    border-radius: 8px;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  }
+
+  .rasp-table td {
+    display: flex;
+    flex-direction: column;
+    padding: 16px 24px;
+    border: none;
+    border-bottom: 1px solid #edf2f7;
+    position: relative;
+    min-height: 50px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    white-space: normal;
+    word-wrap: break-word;
+  }
+
+  .rasp-table td:last-child {
+    border-bottom: none;
+  }
+
+  .rasp-table td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: #1a365d;
+    width: 100%;
+    padding-right: 0;
+    margin-bottom: 8px;
+    flex-shrink: 0;
+    display: block;
+    text-align: center !important;
+  }
+
+  .rasp-table a {
+    display: block;
+    word-break: break-all;
+    text-align: center !important;
   }
 }

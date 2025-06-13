@@ -1,5 +1,5 @@
 // components/RaspEkzamen.js
-import "./styles.css";
+import "./styles.module.css";
 
 interface Exam {
   id: number;
