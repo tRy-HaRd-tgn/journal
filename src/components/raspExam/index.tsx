@@ -71,10 +71,11 @@ const RaspEkzamen = () => {
               ))}
             </tr>
           </thead>
+
           <tbody>
             {exams.map((exam, index) => (
               <tr key={exam.id}>
-                <td className="desktop-only">{index + 1}</td>
+                <td className="desktop-only">№{index + 1}</td>
                 {headers.map((header) => (
                   <td key={header.key} data-label={header.label}>
                     {exam[header.key]}
@@ -86,7 +87,7 @@ const RaspEkzamen = () => {
         </table>
       </div>
 
-      <div className="exams-notice">
+      <div style={{ marginTop: "10px" }} className="exams-notice">
         <p>
           Примечание: Для допуска к экзаменам необходимо закрыть все
           задолженности.

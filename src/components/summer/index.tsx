@@ -84,14 +84,25 @@ const Summer = () => {
           ) : (
             debts.map((debt, index) => (
               <tr key={debt.id}>
-                <td>{index + 1}</td>
-                <td style={{ color: debt.is_pre ? "red" : "inherit" }}>
+                <td data-label="№">{index + 1}</td>
+                <td
+                  data-label="Дисциплина"
+                  style={{
+                    textAlign: "right",
+                    color: debt.is_pre ? "red" : "inherit",
+                  }}
+                >
                   {debt.disciplina_name}
                   {debt.is_pre && " (ПРЕРЕКВЕЗИТ)"}
                 </td>
-                <td>{debt.ssharacter_rup_student_kredit}</td>
-                <td>{debt.period_nomer}</td>
-                <td className={styles.checkboxCell}>
+                <td data-label="Кредиты">
+                  {debt.ssharacter_rup_student_kredit}
+                </td>
+                <td data-label="Семестр">{debt.period_nomer}</td>
+                <td
+                  data-label="Выбор на летний семестр"
+                  className={styles.checkboxCell}
+                >
                   {debt.isSended ? (
                     <span className={styles.sent}>Отправлено</span>
                   ) : (

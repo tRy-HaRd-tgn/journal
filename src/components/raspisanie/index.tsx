@@ -1,5 +1,5 @@
 // components/Rasp.js
-import "./styles.module.css";
+import "./styles.css";
 
 const Rasp = () => {
   // Захардкоженные данные расписания
@@ -71,7 +71,9 @@ const Rasp = () => {
           <tbody>
             {data.rasps.map((rasp, index) => (
               <tr key={index}>
-                <td data-label="№">{index + 1}</td>
+                <td data-label="№" className="mobile-only">
+                  {index + 1}
+                </td>
                 <td data-label="День">{rasp.den_short_ru}</td>
                 <td data-label="Занятие">{rasp.urok_nomer}</td>
                 <td data-label="Время">{rasp.urok_vremya}</td>
