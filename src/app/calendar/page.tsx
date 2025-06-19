@@ -2,13 +2,12 @@
 import { menuItems } from "./data";
 import { useState } from "react";
 import { CurrentControl } from "@/components/currentControl";
-import Rating1 from "@/components/rating1";
+import RatingDopusk from "@/components/rating1";
 import { SystemComponent } from "@/components/systemComponent";
 import Summer from "@/components/summer";
 import Rasp from "@/components/raspisanie";
 import Itog from "@/components/itog";
 import Reg from "@/components/register";
-import Rating2 from "@/components/rating2";
 import Iup from "@/components/iup";
 import RaspEkzamen from "@/components/raspExam";
 export default function Page() {
@@ -117,12 +116,11 @@ export default function Page() {
           </div>
         </div>
         {state === "Текущий контроль" && <CurrentControl />}
-        {state === "Рейтинг допуска 1" && <Rating1 />}
+        {state === "Рейтинг допуска" && <RatingDopusk />}
         {state === "Итог" && <Itog />}
         {state === "Расписание занятий" && <Rasp />}
         {state === "Регистрация" && <Reg />}
         {state === "Академ. задолженность" && <Summer />}
-        {state === "Рейтинг допуска 2" && <Rating2 />}
         {state === "ИТП" && <Iup />}
         {state === "Расписание экзаменов" && <RaspEkzamen />}
       </div>

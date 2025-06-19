@@ -6,14 +6,10 @@ export const menuItems = [
   },
   {
     img: "star_half",
-    text: "Рейтинг допуска 1",
+    text: "Рейтинг допуска",
     link: "#",
   },
-  {
-    img: "stars",
-    text: "Рейтинг допуска 2",
-    link: "#",
-  },
+
   {
     img: "summarize",
     text: "Итог",
