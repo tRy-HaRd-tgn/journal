@@ -191,3 +191,20 @@
     text-align: center !important;
   }
 }
+
+.week-select {
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid #a0a0a0;
+  background: #f8f8ff;
+  font-size: 1rem;
+  color: #333;
+  outline: none;
+  transition: border 0.2s, box-shadow 0.2s;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+  margin-left: 8px;
+}
+.week-select:focus {
+  border: 1.5px solid #4f8cff;
+  box-shadow: 0 2px 8px rgba(79, 140, 255, 0.1);
+}
