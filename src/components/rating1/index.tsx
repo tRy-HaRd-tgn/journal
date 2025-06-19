@@ -1,6 +1,6 @@
 // components/Rating1.js
 import "./styles.css";
-import React from "react";
+import React, { useState } from "react";
 
 interface WeekData {
   ball: number;
@@ -106,6 +106,9 @@ const ratingDataR2: RatingSubject[] = [
     r2: 86,
   },
 ];
+
+const iconsR1 = ["📅", "📅", "📝", "📚", "📅", "📅", "📝", "📚", "📅"];
+const iconsR2 = ["📅", "📅", "📝", "📚", "📅", "📅", "📝", "📚", "📅"];
 
 const tableConfig = {
   r1: {
@@ -221,109 +224,257 @@ const RatingTable: React.FC<RatingTableProps> = ({ type }) => {
   );
 };
 
-const TableR1 = () => (
-  <div style={{ marginBottom: 32 }}>
-    <h3 style={{ fontWeight: 600, fontSize: 20, margin: "16px 0 8px 0" }}>
-      Рейтинг допуска 1
-    </h3>
-    <table className="journal-table">
-      <thead>
-        <tr>
-          <th rowSpan={2}>Дисциплина</th>
-          <th>2</th>
-          <th>3</th>
-          <th colSpan={2}>4</th>
-          <th>5</th>
-          <th>6</th>
-          <th colSpan={2}>7</th>
-          <th>8</th>
-          <th colSpan={1}>R1</th>
-        </tr>
-        <tr>
-          <th>балл</th>
-          <th>балл</th>
-          <th>балл</th>
-          <th>СРС</th>
-          <th>балл</th>
-          <th>балл</th>
-          <th>балл</th>
-          <th>СРС</th>
-          <th>балл</th>
-          <th>общий балл</th>
-        </tr>
-      </thead>
-      <tbody>
-        {ratingDataR1.map((subject, index) => (
-          <tr key={index}>
-            <td data-label="Дисциплина">{subject.disciplina_name}</td>
-            <td data-label="2 неделя">{subject.week2}</td>
-            <td data-label="3 неделя">{subject.week3}</td>
-            <td data-label="4 неделя (балл)">{subject.week4?.ball}</td>
-            <td data-label="4 неделя (СРС)">{subject.week4?.srs}</td>
-            <td data-label="5 неделя">{subject.week5}</td>
-            <td data-label="6 неделя">{subject.week6}</td>
-            <td data-label="7 неделя (балл)">{subject.week7?.ball}</td>
-            <td data-label="7 неделя (СРС)">{subject.week7?.srs}</td>
-            <td data-label="8 неделя">{subject.week8}</td>
-            <td data-label="Общий балл">{subject.r1}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  </div>
-);
+const TableR1 = () => {
+  const [openRows, setOpenRows] = useState<Record<number, boolean>>({});
+  const isMobile = typeof window !== "undefined" && window.innerWidth <= 1000;
+  const handleRowClick = (index: number) => {
+    setOpenRows((prev) => ({ ...prev, [index]: !prev[index] }));
+  };
+  return (
+    <div style={{ marginBottom: 32 }}>
+      <h3 style={{ fontWeight: 600, fontSize: 20, margin: "16px 0 8px 0" }}>
+        Рейтинг допуска 1
+      </h3>
+      <table className="journal-table">
+        {!isMobile && (
+          <thead>
+            <tr>
+              <th rowSpan={2}>Дисциплина</th>
+              <th>2</th>
+              <th>3</th>
+              <th colSpan={2}>4</th>
+              <th>5</th>
+              <th>6</th>
+              <th colSpan={2}>7</th>
+              <th>8</th>
+              <th colSpan={1}>R1</th>
+            </tr>
+            <tr>
+              <th>балл</th>
+              <th>балл</th>
+              <th>балл</th>
+              <th>СРС</th>
+              <th>балл</th>
+              <th>балл</th>
+              <th>балл</th>
+              <th>СРС</th>
+              <th>балл</th>
+              <th>общий балл</th>
+            </tr>
+          </thead>
+        )}
+        <tbody>
+          {ratingDataR1.map((subject, index) => (
+            <React.Fragment key={index}>
+              <tr
+                className={isMobile ? "mobile-row" : ""}
+                onClick={isMobile ? () => handleRowClick(index) : undefined}
+                style={isMobile ? { cursor: "pointer" } : {}}
+              >
+                <td data-label="Дисциплина">{subject.disciplina_name}</td>
+                {isMobile ? (
+                  <>
+                    <td data-label="Общий балл">{subject.r1}</td>
+                    <td style={{ textAlign: "center" }}>
+                      <span style={{ fontSize: 18 }}>
+                        {openRows[index] ? "▲" : "▼"}
+                      </span>
+                    </td>
+                  </>
+                ) : (
+                  <>
+                    <td data-label="2 неделя">{subject.week2}</td>
+                    <td data-label="3 неделя">{subject.week3}</td>
+                    <td data-label="4 неделя (балл)">{subject.week4?.ball}</td>
+                    <td data-label="4 неделя (СРС)">{subject.week4?.srs}</td>
+                    <td data-label="5 неделя">{subject.week5}</td>
+                    <td data-label="6 неделя">{subject.week6}</td>
+                    <td data-label="7 неделя (балл)">{subject.week7?.ball}</td>
+                    <td data-label="7 неделя (СРС)">{subject.week7?.srs}</td>
+                    <td data-label="8 неделя">{subject.week8}</td>
+                    <td data-label="Общий балл">{subject.r1}</td>
+                  </>
+                )}
+              </tr>
+              {isMobile && openRows[index] && (
+                <tr className="mobile-details">
+                  <td colSpan={3}>
+                    <ul className="mobile-details-list">
+                      <li>
+                        <span className="icon">{iconsR1[0]}</span>2 неделя:{" "}
+                        {subject.week2}
+                      </li>
+                      <li>
+                        <span className="icon">{iconsR1[1]}</span>3 неделя:{" "}
+                        {subject.week3}
+                      </li>
+                      <li>
+                        <span className="icon">{iconsR1[2]}</span>4 неделя
+                        (балл): {subject.week4?.ball}
+                      </li>
+                      <li>
+                        <span className="icon">{iconsR1[3]}</span>4 неделя
+                        (СРС): {subject.week4?.srs}
+                      </li>
+                      <li>
+                        <span className="icon">{iconsR1[4]}</span>5 неделя:{" "}
+                        {subject.week5}
+                      </li>
+                      <li>
+                        <span className="icon">{iconsR1[5]}</span>6 неделя:{" "}
+                        {subject.week6}
+                      </li>
+                      <li>
+                        <span className="icon">{iconsR1[6]}</span>7 неделя
+                        (балл): {subject.week7?.ball}
+                      </li>
+                      <li>
+                        <span className="icon">{iconsR1[7]}</span>7 неделя
+                        (СРС): {subject.week7?.srs}
+                      </li>
+                      <li>
+                        <span className="icon">{iconsR1[8]}</span>8 неделя:{" "}
+                        {subject.week8}
+                      </li>
+                    </ul>
+                  </td>
+                </tr>
+              )}
+            </React.Fragment>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+};
 
-const TableR2 = () => (
-  <div>
-    <h3 style={{ fontWeight: 600, fontSize: 20, margin: "16px 0 8px 0" }}>
-      Рейтинг допуска 2
-    </h3>
-    <table className="journal-table">
-      <thead>
-        <tr>
-          <th rowSpan={2}>Дисциплина</th>
-          <th>9</th>
-          <th>10</th>
-          <th colSpan={2}>11</th>
-          <th>12</th>
-          <th>13</th>
-          <th colSpan={2}>14</th>
-          <th>15</th>
-          <th colSpan={1}>R2</th>
-        </tr>
-        <tr>
-          <th>балл</th>
-          <th>балл</th>
-          <th>балл</th>
-          <th>СРС</th>
-          <th>балл</th>
-          <th>балл</th>
-          <th>балл</th>
-          <th>СРС</th>
-          <th>балл</th>
-          <th>общий балл</th>
-        </tr>
-      </thead>
-      <tbody>
-        {ratingDataR2.map((subject, index) => (
-          <tr key={index}>
-            <td data-label="Дисциплина">{subject.disciplina_name}</td>
-            <td data-label="9 неделя">{subject.week9}</td>
-            <td data-label="10 неделя">{subject.week10}</td>
-            <td data-label="11 неделя (балл)">{subject.week11?.ball}</td>
-            <td data-label="11 неделя (СРС)">{subject.week11?.srs}</td>
-            <td data-label="12 неделя">{subject.week12}</td>
-            <td data-label="13 неделя">{subject.week13}</td>
-            <td data-label="14 неделя (балл)">{subject.week14?.ball}</td>
-            <td data-label="14 неделя (СРС)">{subject.week14?.srs}</td>
-            <td data-label="15 неделя">{subject.week15}</td>
-            <td data-label="Общий балл">{subject.r2}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  </div>
-);
+const TableR2 = () => {
+  const [openRows, setOpenRows] = useState<Record<number, boolean>>({});
+  const isMobile = typeof window !== "undefined" && window.innerWidth <= 1000;
+  const handleRowClick = (index: number) => {
+    setOpenRows((prev) => ({ ...prev, [index]: !prev[index] }));
+  };
+  return (
+    <div>
+      <h3 style={{ fontWeight: 600, fontSize: 20, margin: "16px 0 8px 0" }}>
+        Рейтинг допуска 2
+      </h3>
+      <table className="journal-table">
+        {!isMobile && (
+          <thead>
+            <tr>
+              <th rowSpan={2}>Дисциплина</th>
+              <th>9</th>
+              <th>10</th>
+              <th colSpan={2}>11</th>
+              <th>12</th>
+              <th>13</th>
+              <th colSpan={2}>14</th>
+              <th>15</th>
+              <th colSpan={1}>R2</th>
+            </tr>
+            <tr>
+              <th>балл</th>
+              <th>балл</th>
+              <th>балл</th>
+              <th>СРС</th>
+              <th>балл</th>
+              <th>балл</th>
+              <th>балл</th>
+              <th>СРС</th>
+              <th>балл</th>
+              <th>общий балл</th>
+            </tr>
+          </thead>
+        )}
+        <tbody>
+          {ratingDataR2.map((subject, index) => (
+            <React.Fragment key={index}>
+              <tr
+                className={isMobile ? "mobile-row" : ""}
+                onClick={isMobile ? () => handleRowClick(index) : undefined}
+                style={isMobile ? { cursor: "pointer" } : {}}
+              >
+                <td data-label="Дисциплина">{subject.disciplina_name}</td>
+                {isMobile ? (
+                  <>
+                    <td data-label="Общий балл">{subject.r2}</td>
+                    <td style={{ textAlign: "center" }}>
+                      <span style={{ fontSize: 18 }}>
+                        {openRows[index] ? "▲" : "▼"}
+                      </span>
+                    </td>
+                  </>
+                ) : (
+                  <>
+                    <td data-label="9 неделя">{subject.week9}</td>
+                    <td data-label="10 неделя">{subject.week10}</td>
+                    <td data-label="11 неделя (балл)">
+                      {subject.week11?.ball}
+                    </td>
+                    <td data-label="11 неделя (СРС)">{subject.week11?.srs}</td>
+                    <td data-label="12 неделя">{subject.week12}</td>
+                    <td data-label="13 неделя">{subject.week13}</td>
+                    <td data-label="14 неделя (балл)">
+                      {subject.week14?.ball}
+                    </td>
+                    <td data-label="14 неделя (СРС)">{subject.week14?.srs}</td>
+                    <td data-label="15 неделя">{subject.week15}</td>
+                    <td data-label="Общий балл">{subject.r2}</td>
+                  </>
+                )}
+              </tr>
+              {isMobile && openRows[index] && (
+                <tr className="mobile-details">
+                  <td colSpan={3}>
+                    <ul className="mobile-details-list">
+                      <li>
+                        <span className="icon">{iconsR2[0]}</span>9 неделя:{" "}
+                        {subject.week9}
+                      </li>
+                      <li>
+                        <span className="icon">{iconsR2[1]}</span>10 неделя:{" "}
+                        {subject.week10}
+                      </li>
+                      <li>
+                        <span className="icon">{iconsR2[2]}</span>11 неделя
+                        (балл): {subject.week11?.ball}
+                      </li>
+                      <li>
+                        <span className="icon">{iconsR2[3]}</span>11 неделя
+                        (СРС): {subject.week11?.srs}
+                      </li>
+                      <li>
+                        <span className="icon">{iconsR2[4]}</span>12 неделя:{" "}
+                        {subject.week12}
+                      </li>
+                      <li>
+                        <span className="icon">{iconsR2[5]}</span>13 неделя:{" "}
+                        {subject.week13}
+                      </li>
+                      <li>
+                        <span className="icon">{iconsR2[6]}</span>14 неделя
+                        (балл): {subject.week14?.ball}
+                      </li>
+                      <li>
+                        <span className="icon">{iconsR2[7]}</span>14 неделя
+                        (СРС): {subject.week14?.srs}
+                      </li>
+                      <li>
+                        <span className="icon">{iconsR2[8]}</span>15 неделя:{" "}
+                        {subject.week15}
+                      </li>
+                    </ul>
+                  </td>
+                </tr>
+              )}
+            </React.Fragment>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+};
 
 const RatingDopusk: React.FC = () => (
   <div>

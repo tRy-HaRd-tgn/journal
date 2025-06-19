@@ -208,3 +208,28 @@
   border: 1.5px solid #4f8cff;
   box-shadow: 0 2px 8px rgba(79, 140, 255, 0.1);
 }
+
+@media (max-width: 768px) {
+  .rasp-table th,
+  .rasp-table td {
+    font-size: 0.98rem;
+    padding: 8px 6px;
+  }
+  .rasp-table th:nth-child(n + 5),
+  .rasp-table td:nth-child(n + 5) {
+    display: none;
+  }
+  .rasp-table .mobile-details td {
+    background: #f4f8ff;
+    border-top: none;
+    padding: 12px 10px;
+    font-size: 0.97rem;
+  }
+  .rasp-table .mobile-row {
+    border-bottom: 1px solid #e0e0e0;
+    transition: background 0.2s;
+  }
+  .rasp-table .mobile-row:hover {
+    background: #f0f6ff;
+  }
+}

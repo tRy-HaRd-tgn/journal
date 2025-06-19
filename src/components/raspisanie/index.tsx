@@ -97,6 +97,15 @@ const Rasp: React.FC = () => {
   // Состояние для выбранной недели
   const [selectedWeek, setSelectedWeek] = useState<number>(1);
   const data = raspData[selectedWeek];
+  // Состояния раскрытия строк для мобильной версии
+  const [openRows, setOpenRows] = useState<Record<number, boolean>>({});
+
+  // Проверка: мобильное устройство (по ширине экрана)
+  const isMobile = typeof window !== "undefined" && window.innerWidth <= 768;
+
+  const handleRowClick = (index: number) => {
+    setOpenRows((prev) => ({ ...prev, [index]: !prev[index] }));
+  };
 
   return (
     <div className="rasp-container">
@@ -125,51 +134,106 @@ const Rasp: React.FC = () => {
             <tr>
               <th>№</th>
               <th>День</th>
-              <th>Занятие</th>
               <th>Время</th>
               <th>Наименование дисциплины</th>
-              <th>Вид занятия</th>
-              <th>Фио преподавателя</th>
-              <th>Аудитория</th>
-              <th>Ссылка ВКС</th>
-              <th>Логин/пароль ВКС</th>
+              {!isMobile && (
+                <>
+                  <th>Занятие</th>
+                  <th>Вид занятия</th>
+                  <th>Фио преподавателя</th>
+                  <th>Аудитория</th>
+                  <th>Ссылка ВКС</th>
+                  <th>Логин/пароль ВКС</th>
+                </>
+              )}
+              {isMobile && <th></th>}
             </tr>
           </thead>
           <tbody>
             {data.rasps.length === 0 ? (
               <tr>
-                <td colSpan={10} style={{ textAlign: "center" }}>
+                <td colSpan={isMobile ? 5 : 10} style={{ textAlign: "center" }}>
                   Нет данных для выбранной недели
                 </td>
               </tr>
             ) : (
               data.rasps.map((rasp: RaspItem, index: number) => (
-                <tr key={index}>
-                  <td data-label="№" className="mobile-only">
-                    {index + 1}
-                  </td>
-                  <td data-label="День">{rasp.den_short_ru}</td>
-                  <td data-label="Занятие">{rasp.urok_nomer}</td>
-                  <td data-label="Время">{rasp.urok_vremya}</td>
-                  <td data-label="Наименование дисциплины">
-                    {rasp.disciplina_name}
-                  </td>
-                  <td data-label="Вид занятия">{rasp.haracter_rup_ru}</td>
-                  <td data-label="Фио преподавателя">{rasp.sotrudnik_fio}</td>
-                  <td data-label="Аудитория">{rasp.aud_name}</td>
-                  <td data-label="Ссылка ВКС">
-                    <a
-                      href={rasp.ssylka_vks}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {rasp.ssylka_vks}
-                    </a>
-                  </td>
-                  <td data-label="Логин/пароль ВКС">
-                    {rasp.login_password_vks}
-                  </td>
-                </tr>
+                <React.Fragment key={index}>
+                  <tr
+                    className={isMobile ? "mobile-row" : ""}
+                    onClick={isMobile ? () => handleRowClick(index) : undefined}
+                    style={isMobile ? { cursor: "pointer" } : {}}
+                  >
+                    <td data-label="№" className="mobile-only">
+                      {index + 1}
+                    </td>
+                    <td data-label="День">{rasp.den_short_ru}</td>
+                    <td data-label="Время">{rasp.urok_vremya}</td>
+                    <td data-label="Наименование дисциплины">
+                      {rasp.disciplina_name}
+                    </td>
+                    {!isMobile && (
+                      <>
+                        <td data-label="Занятие">{rasp.urok_nomer}</td>
+                        <td data-label="Вид занятия">{rasp.haracter_rup_ru}</td>
+                        <td data-label="Фио преподавателя">
+                          {rasp.sotrudnik_fio}
+                        </td>
+                        <td data-label="Аудитория">{rasp.aud_name}</td>
+                        <td data-label="Ссылка ВКС">
+                          <a
+                            href={rasp.ssylka_vks}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            {rasp.ssylka_vks}
+                          </a>
+                        </td>
+                        <td data-label="Логин/пароль ВКС">
+                          {rasp.login_password_vks}
+                        </td>
+                      </>
+                    )}
+                    {isMobile && (
+                      <td style={{ textAlign: "center" }}>
+                        <span style={{ fontSize: 18 }}>
+                          {openRows[index] ? "▲" : "▼"}
+                        </span>
+                      </td>
+                    )}
+                  </tr>
+                  {isMobile && openRows[index] && (
+                    <tr className="mobile-details">
+                      <td colSpan={5}>
+                        <div>
+                          <b>Занятие:</b> {rasp.urok_nomer}
+                        </div>
+                        <div>
+                          <b>Вид занятия:</b> {rasp.haracter_rup_ru}
+                        </div>
+                        <div>
+                          <b>Фио преподавателя:</b> {rasp.sotrudnik_fio}
+                        </div>
+                        <div>
+                          <b>Аудитория:</b> {rasp.aud_name}
+                        </div>
+                        <div>
+                          <b>Ссылка ВКС:</b>{" "}
+                          <a
+                            href={rasp.ssylka_vks}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            {rasp.ssylka_vks}
+                          </a>
+                        </div>
+                        <div>
+                          <b>Логин/пароль ВКС:</b> {rasp.login_password_vks}
+                        </div>
+                      </td>
+                    </tr>
+                  )}
+                </React.Fragment>
               ))
             )}
           </tbody>
