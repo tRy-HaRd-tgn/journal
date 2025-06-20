@@ -233,3 +233,26 @@
     background: #f0f6ff;
   }
 }
+
+.arrow {
+  display: inline-block;
+  transition: transform 0.3s;
+  font-size: 18px;
+  margin-left: 8px;
+}
+.arrow.open {
+  transform: rotate(90deg);
+}
+
+.mobile-details-anim {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s;
+  opacity: 0;
+  will-change: max-height, opacity;
+  display: table-row;
+}
+.mobile-details-anim.open {
+  max-height: 500px; /* Должно быть больше максимальной высоты содержимого */
+  opacity: 1;
+}

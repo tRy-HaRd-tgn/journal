@@ -162,15 +162,39 @@ const Rasp: React.FC = () => {
                   <tr
                     className={isMobile ? "mobile-row" : ""}
                     onClick={isMobile ? () => handleRowClick(index) : undefined}
-                    style={isMobile ? { cursor: "pointer" } : {}}
+                    style={
+                      isMobile
+                        ? { cursor: "pointer", position: "relative" }
+                        : {}
+                    }
                   >
+                    {isMobile && (
+                      <span
+                        className={`arrow${openRows[index] ? " open" : ""}`}
+                        style={{
+                          position: "absolute",
+                          top: 8,
+                          right: 12,
+                          zIndex: 2,
+                          fontSize: 18,
+                        }}
+                      >
+                        ▶
+                      </span>
+                    )}
                     <td data-label="№" className="mobile-only">
                       {index + 1}
                     </td>
                     <td data-label="День">{rasp.den_short_ru}</td>
                     <td data-label="Время">{rasp.urok_vremya}</td>
-                    <td data-label="Наименование дисциплины">
-                      {rasp.disciplina_name}
+                    <td
+                      data-label="Наименование дисциплины"
+                      colSpan={isMobile ? 2 : undefined}
+                      style={isMobile ? { paddingRight: 12 } : {}}
+                    >
+                      <div style={{ display: "flex", alignItems: "center" }}>
+                        {rasp.disciplina_name}
+                      </div>
                     </td>
                     {!isMobile && (
                       <>
@@ -193,13 +217,6 @@ const Rasp: React.FC = () => {
                           {rasp.login_password_vks}
                         </td>
                       </>
-                    )}
-                    {isMobile && (
-                      <td style={{ textAlign: "center" }}>
-                        <span style={{ fontSize: 18 }}>
-                          {openRows[index] ? "▲" : "▼"}
-                        </span>
-                      </td>
                     )}
                   </tr>
                   {isMobile && openRows[index] && (
