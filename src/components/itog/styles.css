@@ -39,25 +39,25 @@
   }
 
   .journal-table tr {
-    margin-bottom: 20px;
+    margin-bottom: 0;
     background: #fff;
-    border-radius: 16px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border-radius: 0;
+    box-shadow: none;
     overflow: hidden;
     text-align: center;
   }
 
   .journal-table td {
     position: relative;
-    padding: 20px 15px;
+    padding: 20px 0;
     text-align: center;
     border: none;
     border-bottom: 1px solid #eee;
     background: #fff;
     transition: all 0.3s ease;
-    margin: 8px;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none;
   }
 
   .journal-table td:hover {
@@ -117,5 +117,41 @@
     font-size: 18px;
     font-weight: 600;
     color: #2c3e50;
+  }
+
+  /* Скрываем все ячейки кроме первой (название дисциплины) */
+  .journal-table .mobile-hide {
+    display: none;
+  }
+  .journal-table .mobile-row-details {
+    display: none;
+    transition: all 0.3s;
+  }
+  .journal-table .mobile-row-details.open {
+    display: table-cell;
+    width: 100% !important;
+  }
+  .mobile-details-content {
+    background-color: white;
+    padding: 0;
+    margin: 10px;
+    border-radius: 0;
+    box-shadow: none;
+    font-size: 16px;
+    text-align: left;
+    width: 100%;
+    display: block;
+  }
+  .discipline-row {
+    border-radius: 12px 12px 0 0;
+  }
+  .mobile-arrow {
+    display: inline-block !important;
+  }
+}
+
+@media screen and (min-width: 1001px) {
+  .mobile-arrow {
+    display: none !important;
   }
 }

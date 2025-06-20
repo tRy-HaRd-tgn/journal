@@ -123,6 +123,9 @@
     border-bottom: 1px solid #e0e0e0;
     transition: background 0.2s;
   }
+  .mobile-row:not(:last-child) {
+    margin-bottom: 16px !important;
+  }
   .mobile-row:hover {
     background: #f0f6ff;
   }
