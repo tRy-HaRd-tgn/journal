@@ -271,18 +271,28 @@ const TableR1 = () => {
                 onClick={isMobile ? () => handleRowClick(index) : undefined}
                 style={isMobile ? { cursor: "pointer" } : {}}
               >
-                <td data-label="Дисциплина">{subject.disciplina_name}</td>
                 {isMobile ? (
                   <>
-                    <td data-label="Общий балл">{subject.r1}</td>
-                    <td style={{ textAlign: "center" }}>
-                      <span style={{ fontSize: 18 }}>
-                        {openRows[index] ? "▲" : "▼"}
-                      </span>
+                    <td
+                      data-label="Дисциплина"
+                      colSpan={2}
+                      style={{ position: "relative", paddingRight: 12 }}
+                    >
+                      <div style={{ display: "flex", alignItems: "center" }}>
+                        {subject.disciplina_name}
+                        <span
+                          className={`arrow${openRows[index] ? " open" : ""}`}
+                          style={{ marginLeft: "auto" }}
+                        >
+                          ▶
+                        </span>
+                      </div>
                     </td>
+                    <td data-label="Общий балл">{subject.r1}</td>
                   </>
                 ) : (
                   <>
+                    <td data-label="Дисциплина">{subject.disciplina_name}</td>
                     <td data-label="2 неделя">{subject.week2}</td>
                     <td data-label="3 неделя">{subject.week3}</td>
                     <td data-label="4 неделя (балл)">{subject.week4?.ball}</td>
@@ -395,18 +405,28 @@ const TableR2 = () => {
                 onClick={isMobile ? () => handleRowClick(index) : undefined}
                 style={isMobile ? { cursor: "pointer" } : {}}
               >
-                <td data-label="Дисциплина">{subject.disciplina_name}</td>
                 {isMobile ? (
                   <>
-                    <td data-label="Общий балл">{subject.r2}</td>
-                    <td style={{ textAlign: "center" }}>
-                      <span style={{ fontSize: 18 }}>
-                        {openRows[index] ? "▲" : "▼"}
-                      </span>
+                    <td
+                      data-label="Дисциплина"
+                      colSpan={2}
+                      style={{ position: "relative", paddingRight: 12 }}
+                    >
+                      <div style={{ display: "flex", alignItems: "center" }}>
+                        {subject.disciplina_name}
+                        <span
+                          className={`arrow${openRows[index] ? " open" : ""}`}
+                          style={{ marginLeft: "auto" }}
+                        >
+                          ▶
+                        </span>
+                      </div>
                     </td>
+                    <td data-label="Общий балл">{subject.r2}</td>
                   </>
                 ) : (
                   <>
+                    <td data-label="Дисциплина">{subject.disciplina_name}</td>
                     <td data-label="9 неделя">{subject.week9}</td>
                     <td data-label="10 неделя">{subject.week10}</td>
                     <td data-label="11 неделя (балл)">
