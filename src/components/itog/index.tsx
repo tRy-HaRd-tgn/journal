@@ -54,10 +54,11 @@ const Itog = () => {
                       position: "absolute",
                       right: 12,
                       top: "50%",
-                      transform: `translateY(-50%) ${
-                        openRows[idx] ? "rotate(90deg)" : "rotate(0deg)"
-                      }`,
-                      transition: "transform 0.2s",
+                      transform: `translateY(-50%) rotate(${
+                        openRows[idx] ? 90 : 0
+                      }deg)`,
+                      transition:
+                        "transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
                       verticalAlign: "middle",
                     }}
                   >
